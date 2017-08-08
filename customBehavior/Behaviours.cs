@@ -22,7 +22,7 @@ namespace customBehavior
                 typeof(Behaviours),
                 new PropertyMetadata(OnExpandingBehaviourChanged));
 
-        // Muss in der "Owner-Klasse" enthalten sein, wird duch XAML-Kompilat aufgerufen beim Setzen des Properties.
+        // Muss in der registrierenden Klasse enthalten sein, wird duch XAML-Kompilat aufgerufen beim Setzen des Properties.
         // (wird vom Compiler so erwartet)
         // Siehe auch https://docs.microsoft.com/en-us/dotnet/framework/wpf/advanced/how-to-register-an-attached-property
         public static void SetExpandingBehaviour(DependencyObject o, ICommand value)
