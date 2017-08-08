@@ -4,10 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:customBehavior"
+        xmlns:viewModel="clr-namespace:customBehavior.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Window.Resources>
-        <local:ViewModel x:Key="viewmodel" />
+        <viewModel:ViewModel x:Key="viewmodel" />
     </Window.Resources>
     <ContentControl Content="{Binding Mode=OneWay, Source={StaticResource viewmodel}}" />
 </Window>

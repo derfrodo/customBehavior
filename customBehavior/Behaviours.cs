@@ -10,21 +10,27 @@ using System.Windows.Input;
 namespace customBehavior
 {
     /// <summary>
-    /// Credits gehen an https://stackoverflow.com/questions/23316932/invoke-command-when-treeviewitem-is-expanded
+    /// See -> https://stackoverflow.com/questions/23316932/invoke-command-when-treeviewitem-is-expanded
     /// </summary>
     public static class Behaviours
     {
+        // Hier wird das Expanding Behavior definiert. 
+        // Durch diese Registrierung ist überhaupt erst die Nutzung in XAML möglich
         public static readonly DependencyProperty ExpandingBehaviourProperty =
             DependencyProperty.RegisterAttached("ExpandingBehaviour",
                 typeof(ICommand),
                 typeof(Behaviours),
                 new PropertyMetadata(OnExpandingBehaviourChanged));
 
+        // Muss in der "Owner-Klasse" enthalten sein, wird duch XAML-Kompilat aufgerufen beim Setzen des Properties.
+        // (wird vom Compiler so erwartet)
         public static void SetExpandingBehaviour(DependencyObject o, ICommand value)
         {
             o.SetValue(ExpandingBehaviourProperty, value);
         }
 
+        // Abfragen des Wertes 
+        // 
         public static ICommand GetExpandingBehaviour(DependencyObject o)
         {
             return (ICommand)o.GetValue(ExpandingBehaviourProperty);
@@ -38,6 +44,7 @@ namespace customBehavior
             if(tvi != null)
             {
                 ICommand ic = e.NewValue as ICommand;
+                
                 if(ic != null)
                 {
                     // Was hier nicht gemacht wird: Wir lösen keinen Handler (falls bereits ein anderes Command auf tvi.Expanded gebunden wurde)!

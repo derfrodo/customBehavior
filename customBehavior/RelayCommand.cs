@@ -10,55 +10,9 @@ using System.Windows.Input;
 
 namespace customBehavior
 {
-    public class ViewModel
-    {
-        public int Number { get; set; }
-
-        public List<ItemViewModel> ItemModels { get; set; } = new List<ItemViewModel>
-        {
-            new ItemViewModel {Model = new ItemModel { Message="Some Item" } , Children=new List<ItemViewModel> { new ItemViewModel { Model= new ItemModel { Message = "SubItem" } } } },
-            new ItemViewModel {Model = new ItemModel { Message="Another Item" } }
-        };
-
-    }
-
-    public class ItemViewModel     {
-        public ItemModel Model { get; set; }
-        public List<ItemViewModel> Children { get; set; }
-
-
-        public ICommand ItemExpanding => new RelayCommand<RoutedEventArgs>(e =>
-        {
-            //Hier könnten jetzt auch bspw. children geladen werden...
-             Model.Expanded = "Expanded";
-        });
-    }
-
-    public class ItemModel : INotifyPropertyChanged
-    {
-        private string _message;
-        private string _expanded;
-        public string Message { get { return _message; }
-            set
-            {
-                _message = value;
-                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Message)));
-            }
-        }
-        public String Expanded {
-            get { return _expanded; }
-            set
-            {
-                _expanded = value;
-                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Expanded)));
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-    }
 
     //Implementierung aus: https://stackoverflow.com/questions/22285866/why-relaycommand
-    //Blind für Demonstrationszwecke kopiert.
+    //Blind für Demonstrationszwecke kopiert. (Implementierung nicht weiter hinterfragt)
     public class RelayCommand<T> : ICommand
     {
         #region Fields
